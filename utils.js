@@ -1,21 +1,19 @@
 function largest(...arg) {
-    if (!arg[0]) return undefined;
-    let max = arg[0];
-    arg.map((num) => {
-        if (max < num)
-            max = num;
+    return arg.reduce((max, current) => {
+        if (max < current)
+            return current;
+        else
+            return max;
     });
-    return max;
 }
 
 function smallest(...arg) {
-    if (!arg[0]) return undefined;
-    let min = arg[0];
-    arg.map((num) => {
-        if (min > num)
-            min = num;
+    return arg.reduce((min, current) => {
+        if (min > current)
+            return current;
+        else
+            return min;
     });
-    return min;
 }
 
 // console.log(largest(2, 0.1, -5, 100, 3));
