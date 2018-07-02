@@ -1,5 +1,9 @@
 function largest(...arg) {
+    if (arg.length === 0)
+        throw new Error("Function largest() used without arguments");
     return arg.reduce((max, current) => {
+        if (typeof current !== "number")
+            throw new Error("Arguments in function largest() should be a number");
         if (max < current)
             return current;
         else
@@ -8,7 +12,11 @@ function largest(...arg) {
 }
 
 function smallest(...arg) {
+    if (arg.length === 0)
+        throw new Error("Function smallest() used without arguments");
     return arg.reduce((min, current) => {
+        if (typeof current !== "number")
+            throw new Error("Arguments in function smallest() should be a number");
         if (min > current)
             return current;
         else
@@ -20,6 +28,8 @@ function smallest(...arg) {
 // console.log(smallest(2, 0.1, -5, 100, 3));
 
 function transform(base_array) {
+    if (!Array.isArray(base_array))
+        throw new Error("Argument in function transform() should be array");
     return base_array.map((item) => {
         return function () {
             return item;
@@ -34,6 +44,8 @@ function transform(base_array) {
 function sum(...arg) {
     if (arg.length === 0) return undefined;
     if (arg.length === 1) return arg[0];
+    if (typeof arg[arg.length-1] !== "number" || typeof arg[arg.length-2] !== "number")
+        throw new Error("Arguments in function sum() should be a number");
     arg[arg.length-2] += arg[arg.length-1];
     delete arg[arg.length-1];
     --arg.length;
@@ -43,6 +55,8 @@ function sum(...arg) {
 // console.log((sum(1,3,5,7)));
 
 function countDown(n) {
+    if (!Number.isInteger(n) && n < 0)
+        throw new Error("Argument in function countDown() should be positive integer");
     for (let i = n; i >= 0; i--)
         setTimeout(function () {
             console.log(i)
